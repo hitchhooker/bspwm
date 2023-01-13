@@ -1,28 +1,34 @@
 #
 # wm independent hotkeys
+# tomek edition
 #
 
-# terminal emulator
+# Change keyboard language
+super + space
+	{setxkbmap us, setxkbmap fi}
+
+
+# terminal emulator - alacritty
 super + Return
-	xfce4-terminal
+	alacritty
 
 # program launcher
 super + d
 	rofi -modi drun -show drun -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
-                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
 
 # show open window
 super + ctrl + d
 	rofi -modi drun -show window -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
-                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
 
 # show ssh sesssions
 super + shift + d
 	rofi -modi drun -show ssh -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
-                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
 
 # power-menu 
 super + shift + e
@@ -31,6 +37,10 @@ super + shift + e
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# Alt + Super to enter this mode, F6 to get out -- disabled mode
+super + alt + g: F6
+    pkill -ALRM sxhkd
 
 #
 # bspwm hotkeys
@@ -75,10 +85,6 @@ super + ctrl + {m,x,y,z}
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
-
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
 super + {_,shift + }c
@@ -145,7 +151,7 @@ super + {Left,Down,Up,Right}
 XF86AudioRaiseVolume
   amixer -q set Master 5%+ unmute
 
-# Still multimedia
+# Still muøltimedia
 XF86AudioLowerVolume
   amixer -q set Master 5%- unmute
 
@@ -166,17 +172,21 @@ XF86MonBrightnessDown
 
 # Screenshot
 Print
-  scrot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+  flameshot gui
 
-super + Print
+super+Print
   ~/.config/bspwm/scripts/screenshot.sh
+
+# rofi clipboard
+super + b
+  rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # Shortcuts
 super + w 
-  firefox
+  chromium
 
-super + n 
-  thunar  
+super + e
+  thunar
 
 super + F1
   ~/.config/bspwm/scripts/keybindings_rofi.sh
