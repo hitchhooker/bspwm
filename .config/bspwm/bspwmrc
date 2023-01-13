@@ -1,0 +1,93 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+#Dual monitor
+#find out names with arandr or xrandr
+#bspc monitor DP-2 -d 1 2 3 4 5 6 7 8 9
+#bspc monitor LVDS1 -d 1 2 3 4
+#bspc monitor DP3 -d  5 6 7 8 9
+#bspc monitor HDMI-0 -d 1 2 3 4 5 6 7 8 9 10
+#bspc monitor HDMI-1 -d 1 2 3 4 5 6 7 8 9 10
+#bspc monitor HDMI1 -d 1 2 3 4 5
+#bspc monitor HDMI2 -d 6 7 8 9 10
+
+bspc config border_width         1
+bspc config window_gap          2
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config pointer_follows_focus true
+bspc config focus_follows_pointer true
+
+
+# steam in 1
+bspc rule -a Steam desktop='^1'
+# browser in 2
+bspc rule -a google-chrome desktop='^2'
+bspc rule -a Chromium desktop='^2'
+bspc rule -a firefox desktop='^2'
+
+#keepass and files in 3
+bspc rule -a KeepassXC = '^3'
+
+# communication apps at 4
+bspc rule -a signal-desktop desktop='^4'
+bspc rule -a telegram-desktop desktop='^4'
+bspc rule -a discord desktop='^5'
+bspc rule -a keybase-gui desdktop='^5'
+bspc rule -a element-desktop desktop='^5'
+bspc rule -a Cinny desktop='^5' state=tiled
+
+# code development environment at 5 screen
+bspc rule -a Code desktop='^5'
+
+# 6 for email
+bspc rule -a Evolution desktop='^6'
+bspc rule -a protonmail-bridge desktop='^6'
+
+# screen recorder float
+bspc rule -a Peek state=floating
+
+# videoplayers to float
+bspc rule -a vlc state=floating
+bspc rule -a mplayer2 state=floating
+bspc rule -a Yad state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+
+# Border
+bspc config focused_border_color        "#6c71c4"
+bspc config normal_border_color         "#073642"
+bspc config active_border_color         "#073642"
+
+# Autostart
+#
+# Set display from arandr saved script
+sh ~/.screenlayout/monitor.sh &
+# Bar
+~/.config/polybar/launch.sh &
+# Notifications
+/usr/bin/dunst &
+# Polkit
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# Wallpaper
+ feh --restore
+# Dex
+dex -a -s /etc/xdg/autostart/:~/.config/autostart/  
+# Picom
+picom -b --config ~/.config/picom/picom.conf &
+# Network Applet
+nm-applet --indicator &
+# clipboard
+greenclip daemon
+# Cursor
+xsetroot -cursor_name left_ptr &
+# mouse acceleration
+sh ~/.config/bspwm/mouse.sh 
+# screen never die
+xset s off -dpms
