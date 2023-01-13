@@ -7,7 +7,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
 
 # Clone latest Neovim config from Github
-git clone https://github.com/nvchad/nvim ~/.config/nvim
+git clone https://github.com/NvChad/NvChad.git ~/.config/nvim
 
 # Clone tnvim plugin from Github
-git clone https://github.com/hitchhooker/tnvim ~/.config/nvim/lua/custom
+git clone git@github.com:hitchhooker/tnvim.git ~/.config/nvim/lua/custom
