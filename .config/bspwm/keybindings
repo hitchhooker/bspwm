@@ -17,14 +17,14 @@ Utility Keyboard Shortcuts
 
 ###################
 
--> Open terminal (xfce4-terminal)
+-> Open terminal (alacritty)
 Super + Return
 
 -> App launcher (Rofi)
 Super + d
 
--> Window switcher
-Super + Ctrl + d
+-> Window switcher ??
+Super + Ctrl
 
 -> Show SSH sessions
 Super + Shift + d
@@ -41,11 +41,11 @@ Print
 -> Show screenshot menu
 Super + Print
 
--> Launch Firefox
+-> Launch Chromium
 Super + w
 
 -> Launch Thunar
-Super + n
+Super + e
 
 
 

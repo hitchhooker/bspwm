@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # options to be displayed
-option0='screen'
-option1='select area or window'
-option2='currently focused window'
+option0="screen"
+option1="area"
+option2="window"
+
+# options to be displyed
 options="$option0\n$option1\n$option2"
 
-# save file
-file="$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
-
-selected="$(echo -e "$options" | rofi -lines 3 -dmenu -p 'scrot')"
+selected="$(echo -e "$options" | rofi -lines 3 -dmenu -p "scrot")"
 case $selected in
-  "$option0")
-    sleep 1 && scrot -F "$file";;
-  "$option1")
-    sleep 1 && scrot -s -F "$file";;
-  "$option2")
-    sleep 1 && scrot -u -F "$file";;
+    $option0)
+        cd ~/Pictures/ && sleep 1 && scrot;;
+    $option1)
+        cd ~/Pictures/ && scrot -s;;
+    $option2)
+        cd ~/Pictures/ && sleep 1 && scrot -u;;
 esac
+
