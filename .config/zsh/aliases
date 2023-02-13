@@ -1,0 +1,8 @@
+alias vi=nvim
+alias ls=lsd
+alias cp=xcp
+alias x=lf
+alias h=htop
+alias dd=bcp
+
+alias rome='cd ~/rome/environments/ansible && source ../venv/bin/activate'

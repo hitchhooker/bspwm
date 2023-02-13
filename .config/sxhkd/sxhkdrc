@@ -3,35 +3,6 @@
 # tomek edition
 #
 
-# Change keyboard language
-super + space
-	{setxkbmap us, setxkbmap fi}
-
-# terminal emulator - alacritty
-super + Return
-	alacritty
-
-# program launcher
-super + d
-	rofi -modi drun -show drun -line-padding 4 \
-    columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
-    show-icons -drun-icon-theme "Arc-X-D" -font "UbuntuMono Nerd Font 10"
-
-# show open window
-super + ctrl + d
-	rofi -modi drun -show window -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
-
-# show ssh sesssions
-super + shift + d
-	rofi -modi drun -show ssh -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
-
-# power-menu 
-super + shift + e
-     ~/.config/rofi/powermenu.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -86,16 +57,12 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
+super + {_,shift + }Tab
 	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
@@ -169,23 +136,46 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
   xbacklight -dec 5
 
-# Screenshot
+# Take screenshot
 Print
   flameshot gui
 
-super+Print
-  ~/.config/bspwm/scripts/screenshot.sh
-
-# rofi clipboard
-super + b
-  rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-
-# Shortcuts
+# Open browser
 super + w 
   chromium
 
+# File manager
 super + e
   thunar
 
+# Change keyboard language
+super + space
+	{setxkbmap us, setxkbmap fi}
+
+# terminal emulator - alacritty
+super + Return
+	alacritty
+
+# program launcher
+super + d
+  rofi \
+      -show drun -terminal alacritty \
+      -theme "$HOME/.config/rofi/launchers/type-1/style-9.rasi"
+
+# connect to ssh servers
+super + c
+  rofi \
+      -show ssh -terminal alacritty \
+      -theme "$HOME/.config/rofi/launchers/type-1/style-1.rasi"
+
+# power-menu
+super + p
+     ~/.config/rofi/powermenu/type-5/powermenu.sh
+
+super + b
+  rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' \
+      -theme "$HOME/.config/rofi/launchers/type-1/style-5.rasi" -font "Hack 8"
+
+# keybindins menu
 super + F1
   ~/.config/bspwm/scripts/keybindings_rofi.sh
