@@ -1,93 +1,71 @@
-working_directory: "/home/user/"
+colors:
+  bright:
+    black: '#75715e'
+    blue: '#66d9ef'
+    cyan: '#a1efe4'
+    green: '#a6e22e'
+    magenta: '#ae81ff'
+    red: '#f92672'
+    white: '#f9f8f5'
+    yellow: '#f4bf75'
+  normal:
+    black: '#272822'
+    blue: '#66d9ef'
+    cyan: '#a1efe4'
+    green: '#a6e22e'
+    magenta: '#ae81ff'
+    red: '#f92672'
+    white: '#f8f8f2'
+    yellow: '#f4bf75'
+  primary:
+    background: '#171714'
+    foreground: '#f8f8f2'
+font:
+  bold:
+    family: UbuntuMono Nerd Font
+  italic:
+    family: UbuntuMono Nerd Font
+  normal:
+    family: UbuntuMono Nerd Font
+  size: 10.00
+
+## Set environment variables
 env:
   TERM: xterm-256color
-  EDITOR: nvim
-# autostart zsh
-shell:
-  program: /bin/bash
-  args:
-    - -c
-    - zsh
 
+## Terminal window settings
 window:
+  dimensions:
+    columns: 84
+    lines: 22
+
   padding:
-    x: 4
-    y: 2
-    dynamic_padding:  true
-    decoration: none
+    x: 0
+    y: 0
 
-font:
-  normal:
-    family: monospace
-    style: Regular
+  opacity: 0.95
+  decorations: full
+  startup_mode: Windowed
+  dynamic_title: true
+  dynamic_padding: true
 
-  bold:
-    family: monospace
-    style: Bold
+## scrolling
+  history: 10000
+  multiplier: 3
 
-  italic:
-    family: monospace
-    style: Italic
+## Cursor
+cursor:
+  style:
+    shape: Block
+    blinking: On
 
-  bold_italic:
-    family: monospace
-    style: Bold Italic
+  unfocused_hollow: false
 
-  size: 11
-
-colors:
-  # Default colors
-  primary:
-    background: '0x181a20'
-    foreground: '0xeeffff'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x212121'
-    cursor: '0xeeffff'
-
-  # Normal colors
-  normal:
-    black:   '0x212121'
-    red:     '0xf07178'
-    green:   '0xc3e88d'
-    yellow:  '0xffcb6b'
-    blue:    '0x82aaff'
-    magenta: '0xc792ea'
-    cyan:    '0x89ddff'
-    white:   '0xeeffff'
-
-  # Bright colors
-  bright:
-    black:   '0x4a4a4a'
-    red:     '0xf07178'
-    green:   '0xc3e88d'
-    yellow:  '0xffcb6b'
-    blue:    '0x82aaff'
-    magenta: '0xc792ea'
-    cyan:    '0x89ddff'
-    white:   '0xffffff'
-
-  indexed_colors:
-    - { index: 16, color: '0xf78c6c' }
-    - { index: 17, color: '0xff5370' }
-    - { index: 18, color: '0x303030' }
-    - { index: 19, color: '0x353535' }
-    - { index: 20, color: '0xb2ccd6' }
-    - { index: 21, color: '0xeeffff' }
-
-
-# cursor:
-#   style: Underline
-
-#   unfocused_hollow: false
-
+## Live config reload
 live_config_reload: true
-                 
-key_bindings:
 
-  - { key: Key0, mods: Control, action: ResetFontSize }
-
-  - { key: Equals, mods: Control, action: IncreaseFontSize }
-
-  - { key: Minus, mods: Control, action: DecreaseFontSize }
+## zsh as shell
+shell:
+  program: /usr/bin/zsh
+  args:
+    - --login
