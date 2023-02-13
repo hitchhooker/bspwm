@@ -1,14 +1,16 @@
 #!/bin/bash
 
-if [ -f /tmp/new_username.txt ]
-then
-    NEW_USER=$(cat /tmp/new_username.txt)
-else
-    NEW_USER=$(cat /tmp/$chroot_path/etc/passwd | grep "/home" |cut -d: -f1 |head -1)
-fi
+# if [ -f /tmp/new_username.txt ]
+# then
+#     NEW_USER=$(cat /tmp/new_username.txt)
+# else
+#     NEW_USER=$(cat /tmp/$chroot_path/etc/passwd | grep "/home" |cut -d: -f1 |head -1)
+# fi
 
-git clone https://github.com/EndeavourOS-Community-Editions/bspwm.git
-cd bspwm
+NEW_USER=$USER
+
+git clone https://github.com/hitchhooker/bspwm.git
+cd bspwm || exit
 mkdir -p /home/$NEW_USER/.local/share/fonts
 cp IosevkaTermNerdFontComplete.ttf /home/$NEW_USER/.local/share/fonts/
 cp -R .config /home/$NEW_USER/                                               
